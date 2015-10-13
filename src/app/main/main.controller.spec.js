@@ -83,5 +83,20 @@
         expect(subject.displayItems()).toEqual(['item1', 'item3']);
       });
     });
+
+    describe("clearCompletedItem", function() {
+      beforeEach(function() {
+        this.item1 = new TodoItem('item1', false);
+        this.item2 = new TodoItem('item2', true);
+        this.item3 = new TodoItem('item3', false);
+
+        subject.itemList = [this.item1, this.item2, this.item3];
+      });
+
+      it('remove all complete item from itemList', function() {
+        subject.removeCompletedItem();
+        expect(subject.itemList).toEqual([this.item1,this.item3]);
+      });
+    });
   });
 })();

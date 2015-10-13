@@ -35,7 +35,11 @@
     this.onlyNotDone = function(item) {
       return !item.done;
     };
-
     this.filterType = this.takeAll;
+
+    this.removeCompletedItem = function() {
+      this.itemList = _.filter(this.itemList, this.onlyNotDone);
+    };
+    
  }
 })();
