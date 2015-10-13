@@ -8,8 +8,15 @@
   function TodoListController(TodoItem, _) {
     this.newItemText = '';
     this.itemList = [];
+    this.notDoneCounter = 0;
+
+    this.countNotDone = function() {
+      var notDoneList = _.filter(this.itemList, this.onlyNotDone);
+      this.notDoneCounter = notDoneList.length;
+    };
 
     this.displayItems = function() {
+      this.countNotDone();
       return _.filter(this.itemList, this.filterType);
     };
 
@@ -40,6 +47,6 @@
     this.removeCompletedItem = function() {
       this.itemList = _.filter(this.itemList, this.onlyNotDone);
     };
-    
+
  }
 })();

@@ -56,10 +56,14 @@
             <input type="radio" name="filter-type" data-ng-model="todoList.filterType" ng-value="todoList.onlyNotDone"> ยังไม่ได้ทำ
           </label>
         </div>
-        <div class="button">
-          <label>
-            <button ng-click="todoList.removeCompletedItem()" class="btn btn-default btn-xs"> Clear Complete </button>
-          </label>
+
+        <div class="pull-right">
+          <div>
+            ยังไม่ได้ทำอีก <span ng-bind="todoList.notDoneCounter"> </span>
+          </div>
+          <div>
+            <button ng-click="todoList.removeCompletedItem()" class="btn btn-danger btn-xs">ลบงานที่เสร็จสิ้นแล้ว</button>
+          </div>
         </div>
       </div>
     </div>
