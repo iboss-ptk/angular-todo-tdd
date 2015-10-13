@@ -20,9 +20,10 @@
         expect(subject.itemList).toEqual([]);
       });
 
-      it("sets filterType to takeAll", function () {
-        expect(subject.filterType).toEqual(subject.takeAll);
+      it("sets notDoneCounter as 0", function () {
+        expect(subject.notDoneCounter).toEqual(0);
       });
+
     });
 
     describe("displayItems", function () {
@@ -32,6 +33,15 @@
         this.item3 = new TodoItem('item3', false);
 
         subject.itemList = [this.item1, this.item2, this.item3];
+      });
+
+      it('update notDoneCounter', function (){
+        subject.displayItems();
+        expect(subject.notDoneCounter).toEqual(2);
+
+        subject.itemList.push(new TodoItem('item4', false));
+        subject.displayItems();
+        expect(subject.notDoneCounter).toEqual(3);
       });
 
       describe('takeAll filter', function() {
@@ -53,7 +63,7 @@
           expect(subject.displayItems()).toEqual([this.item1,this.item3]);
         });
       });
-      
+
     });
 
     describe("addItem", function () {
@@ -81,6 +91,18 @@
         subject.itemList = ['item1', 'item2', 'item3'];
         subject.removeItem(1);
         expect(subject.displayItems()).toEqual(['item1', 'item3']);
+      });
+    });
+
+    describe("countNotDone", function () {
+      it('count number of item(s) that are not done yet', function(){
+        this.item1 = new TodoItem('item1', false);
+        this.item2 = new TodoItem('item2', true);
+        this.item3 = new TodoItem('item3', false);
+        subject.itemList = [this.item1, this.item2, this.item3];
+
+        subject.countNotDone();
+        expect(subject.notDoneCounter).toEqual(2);
       });
     });
   });
